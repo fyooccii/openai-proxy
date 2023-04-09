@@ -8,7 +8,9 @@ serve(async (request) => {
   if (url.pathname === "/") {
     return fetch(new URL("./Readme.md", import.meta.url));
   }
-
+  console.log('[Origin req]', JSON.stringify(request))
   url.host = OPENAI_API_HOST;
-  return await fetch(url, request);
+  const res = await fetch(url, request);
+  console.log('[Origin res]', JSON.stringify(res));
+  return res;
 });
